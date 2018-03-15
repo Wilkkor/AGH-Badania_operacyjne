@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import java.io.File;
+import java.io.PrintStream;
+
 import static org.junit.Assert.*;
 
 public class JsonTest {
@@ -46,6 +49,12 @@ public class JsonTest {
 
 
         główny.print(System.out,0);
+        File dane=new File("dane.json");
+        if(!dane.exists()) {
+            dane.createNewFile();
+        }
+        PrintStream zapis = new PrintStream(dane);
+        główny.print(zapis,0);
     }
 
 }
