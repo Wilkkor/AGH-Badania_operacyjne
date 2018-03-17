@@ -3,6 +3,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Json implements Cloneable{
@@ -85,6 +86,8 @@ public class Json implements Cloneable{
         }
     }
     public void print(PrintStream out,int tabulatory){
+        Scanner odczyt=new Scanner(System.in);
+        //odczyt.next();
         Locale.setDefault(Locale.US);
         if(!nazwa.isEmpty()){
             tabulatory(out,tabulatory);

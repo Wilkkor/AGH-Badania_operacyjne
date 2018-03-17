@@ -51,35 +51,35 @@ public class Drzewo_kategorii {
     }
 
     public Json dodajmacierzwag(Json kategoria,int wymiar,String[] nazwy){
-        Json macierz = new Json("macierz_wag");
-        macierz.json_tab=new Json[wymiar];
-        double tab[];
+        Json macierz = new Json("matrix");
+        macierz.liczby=new double[wymiar*wymiar];
+        //double tab[];
         for(int i=0;i<wymiar;i++){
-            tab=new double[wymiar];
+            //tab=new double[wymiar];
             for(int j=0;j<wymiar;j++){
                 System.out.printf("ile razy ważniejsze jest %s ,od %s ",nazwy[i],nazwy[j]);
-                tab[j]=odczyt.nextDouble();
+                macierz.liczby[wymiar*i+j]=odczyt.nextDouble();
             }
-            macierz.json_tab[i]=new Json(tab);
+            //macierz.json_tab[i]=new Json(tab);
         }
         kategoria.addJson(macierz);
         return macierz;
     }
 
     public Json dodajmacierz(Json kategoria){
-        Json macierz = new Json("macierz");
-        double tab[];
-        macierz.json_tab=new Json[alternatywy.stringi.length];
+        Json macierz = new Json();
+        double tab[]=new double[alternatywy.stringi.length*alternatywy.stringi.length];
+        //macierz.liczby=new double[alternatywy.stringi.length*alternatywy.stringi.length];
         for(int i=0;i<alternatywy.stringi.length;i++){
-            tab=new double[alternatywy.stringi.length];
+            //tab=new double[alternatywy.stringi.length];
             for(int j=0;j<alternatywy.stringi.length;j++){
                 System.out.printf("ile razy w %s lepsze jest %s ,od %s ",kategoria.nazwa,alternatywy.stringi[i],alternatywy.stringi[j]);
-                tab[j]=odczyt.nextDouble();
+                tab[i*alternatywy.stringi.length+j]=odczyt.nextDouble();
             }
-            macierz.json_tab[i]=new Json(tab);
+            //macierz.json_tab[i]=new Json(tab);
         }
-        kategoria.addJson(macierz);
-        return macierz;
+        kategoria.setLiczby(tab);
+        return kategoria;
     }
 
     public String[] tworzenie_alternatyw(int ilosc_alternatyw){
@@ -91,7 +91,7 @@ public class Drzewo_kategorii {
         return alternatywy;
     }
     public void wypisz(PrintStream out){
-        out.println(głowny.jsony.size());
+        //out.println(głowny.jsony.size());
         głowny.print(out,0);
     }
 }

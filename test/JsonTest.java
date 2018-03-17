@@ -13,27 +13,21 @@ public class JsonTest {
         Json alternatywy = new Json("alternatywy");
         alternatywy.setStringi(tab);
         Json goal=new Json("Goal");
-        Json[] macierzin=new Json[3];
-        double[] liczby;
+        double[] macierz=new double[9];
+        //macierz.nazwij("macierz");
         for(int i=0;i<3;i++){
-            liczby=new double[3];
             for (int j=0;j<3;j++) {
-                liczby[j]=1;
+                //macierz.liczby[3*i+j]=1;
+                macierz[3*i+j]=1;
             }
-            macierzin[i]=new Json(liczby);
         }
-        Json macierz=new Json(macierzin);
-        macierz.nazwij("macierz");
-        Json[] macierzinwag=new Json[2];
-        for(int i=0;i<2;i++){
-            liczby=new double[2];
-            for (int j=0;j<2;j++) {
-                liczby[j]=1;
-            }
-            macierzinwag[i]=new Json(liczby);
-        }
-        Json macierzwag=new Json(macierzinwag);
+        Json macierzwag=new Json(new double[4]);
         macierzwag.nazwij("macierz_wag");
+        for(int i=0;i<2;i++){
+            for (int j=0;j<2;j++) {
+                macierzwag.liczby[j]=1;
+            }
+        }
 
 
         główny.addJson(alternatywy);
@@ -41,9 +35,9 @@ public class JsonTest {
         goal.addJson(macierzwag.cloneit());
         goal.addJson(new Json()).nazwij("a");
         goal.jsony.get(1).addJson(macierzwag.cloneit());
-        goal.jsony.get(1).addJson(new Json("q")).addJson(macierz.cloneit());
-        goal.jsony.get(1).addJson(new Json("w")).addJson(macierz.cloneit());
-        goal.addJson(new Json()).nazwij("b").addJson(macierz.cloneit());
+        goal.jsony.get(1).addJson(new Json("q")).setLiczby(macierz.clone());
+        goal.jsony.get(1).addJson(new Json("w")).setLiczby(macierz.clone());
+        goal.addJson(new Json()).nazwij("b").setLiczby(macierz.clone());
 
 
 
