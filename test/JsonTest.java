@@ -3,8 +3,6 @@ import org.junit.Test;
 import java.io.File;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
-
 public class JsonTest {
     @Test
     public void wypisanie() throws Exception {
@@ -25,21 +23,23 @@ public class JsonTest {
         macierzwag.nazwij("macierz_wag");
         for(int i=0;i<2;i++){
             for (int j=0;j<2;j++) {
-                macierzwag.liczby[j]=1;
+                macierzwag.getLiczby()[j]=1;
             }
         }
 
 
         główny.addJson(alternatywy);
         główny.addJson(goal);
-        goal.addJson(macierzwag.cloneit());
-        goal.addJson(new Json()).nazwij("a");
-        goal.jsony.get(1).addJson(macierzwag.cloneit());
-        goal.jsony.get(1).addJson(new Json("q")).setLiczby(macierz.clone());
-        goal.jsony.get(1).addJson(new Json("w")).setLiczby(macierz.clone());
-        goal.addJson(new Json()).nazwij("b").setLiczby(macierz.clone());
+        główny.getJson_list().get(1).addJson(macierzwag);
+        główny.getJson_list().get(1).addJson(new Json()).nazwij("a");
+        główny.getJson_list().get(1).getJson_list().get(1).addJson(macierzwag);
+        główny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("q")).setLiczby(macierz);
+        główny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("w")).setLiczby(macierz);
+        główny.getJson_list().get(1).addJson(new Json()).nazwij("b").setLiczby(macierz);
 
-
+        System.out.println(główny.getJson_list().get(1).getJson_list().get(0).nazwa);
+        System.out.println(główny.getJson_list().get(1).getJson_list().size());
+        System.out.println(główny.getJson_list().get(1).type.equals("jsonlist"));
 
 
         główny.print(System.out,0);

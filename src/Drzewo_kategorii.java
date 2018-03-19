@@ -1,13 +1,13 @@
-import java.io.OutputStream;
+//import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
-import java.util.stream.Stream;
+//import java.util.stream.Stream;
 
 public class Drzewo_kategorii {
     private Scanner odczyt = new Scanner(System.in);
     private Json głowny=new Json();
     private Json alternatywy=new Json("alternatywy");
-    public void dodajalternatywy(){
+    public void dodajalternatywy() {
         głowny.addJson(alternatywy);
         int ilosc_alternatyw;
         System.out.println("podaj ile alternatyw");
@@ -15,7 +15,7 @@ public class Drzewo_kategorii {
         alternatywy.setStringi(tworzenie_alternatyw(ilosc_alternatyw));
     }
 
-    public void porownaj(){
+    public void porownaj() {
         Json goal = new Json("Goal");
         głowny.addJson(goal);
         dodajpodkategorie(goal);
@@ -52,13 +52,13 @@ public class Drzewo_kategorii {
 
     public Json dodajmacierzwag(Json kategoria,int wymiar,String[] nazwy){
         Json macierz = new Json("matrix");
-        macierz.liczby=new double[wymiar*wymiar];
+        macierz.setLiczby(new double[wymiar*wymiar]);
         //double tab[];
         for(int i=0;i<wymiar;i++){
             //tab=new double[wymiar];
             for(int j=0;j<wymiar;j++){
                 System.out.printf("ile razy ważniejsze jest %s ,od %s ",nazwy[i],nazwy[j]);
-                macierz.liczby[wymiar*i+j]=odczyt.nextDouble();
+                macierz.getLiczby()[wymiar*i+j]=odczyt.nextDouble();
             }
             //macierz.json_tab[i]=new Json(tab);
         }
@@ -68,13 +68,13 @@ public class Drzewo_kategorii {
 
     public Json dodajmacierz(Json kategoria){
         Json macierz = new Json();
-        double tab[]=new double[alternatywy.stringi.length*alternatywy.stringi.length];
+        double tab[]=new double[alternatywy.getstringsize()*alternatywy.getstringsize()];
         //macierz.liczby=new double[alternatywy.stringi.length*alternatywy.stringi.length];
-        for(int i=0;i<alternatywy.stringi.length;i++){
+        for(int i=0;i<alternatywy.getstringsize();i++){
             //tab=new double[alternatywy.stringi.length];
-            for(int j=0;j<alternatywy.stringi.length;j++){
-                System.out.printf("ile razy w %s lepsze jest %s ,od %s ",kategoria.nazwa,alternatywy.stringi[i],alternatywy.stringi[j]);
-                tab[i*alternatywy.stringi.length+j]=odczyt.nextDouble();
+            for(int j=0;j<alternatywy.getstringsize();j++){
+                System.out.printf("ile razy w %s lepsze jest %s ,od %s ",kategoria.nazwa,alternatywy.getStringi()[i],alternatywy.getStringi()[j]);
+                tab[i*alternatywy.getstringsize()+j]=odczyt.nextDouble();
             }
             //macierz.json_tab[i]=new Json(tab);
         }
