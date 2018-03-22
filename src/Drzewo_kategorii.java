@@ -8,17 +8,17 @@ public class Drzewo_kategorii {
     private Json głowny=new Json();
     private Json alternatywy=new Json("alternatywy");
     public void dodajalternatywy() {
-        głowny.addJson(alternatywy);
         int ilosc_alternatyw;
         System.out.println("podaj ile alternatyw");
         ilosc_alternatyw=odczyt.nextInt();
         alternatywy.setStringi(tworzenie_alternatyw(ilosc_alternatyw));
+        głowny.addJson(alternatywy);
     }
 
     public void porownaj() {
         Json goal = new Json("Goal");
         głowny.addJson(goal);
-        dodajpodkategorie(goal);
+        dodajpodkategorie(głowny.getJson_list().get(głowny.getJson_list().size()-1));
     }
 
     public void dodajpodkategorie(Json kategoria){
