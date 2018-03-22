@@ -1,4 +1,4 @@
-import java.io.PrintStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -200,4 +200,30 @@ public class Json{
                 System.out.println("nieee nie tak");
         }
     }
+    static Json read(String nazwa_wejscia) throws IOException {
+        FileInputStream wejscie=new FileInputStream(nazwa_wejscia);
+        byte[] buf=new byte[100];
+        String w_stringu;
+        StringBuilder do_wczytywania=new StringBuilder();
+        while(wejscie.read(buf,0,100)>0){
+            do_wczytywania.append(buf);
+        }
+        w_stringu=usun_biale_znaki(do_wczytywania);
+        return Json_creaton(w_stringu);
+    }
+    static String usun_biale_znaki(StringBuilder wynik){
+        boolean w_cudzysłowiu=false;
+        int i=0;
+        while(i<wynik.length()){
+            if(wynik.charAt(i)<33){
+                wynik.delete(i,i+1);
+            }
+        }
+        return wynik.toString();
+    }
+    static Json Json_creaton(String w_stringu){
+        Json wynik =new Json();
+        return wynik;
+    }
+
 }
