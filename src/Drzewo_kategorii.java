@@ -57,8 +57,12 @@ public class Drzewo_kategorii {
         for(int i=0;i<wymiar;i++){
             //tab=new double[wymiar];
             for(int j=0;j<wymiar;j++){
-                System.out.printf("ile razy ważniejsze jest %s ,od %s ",nazwy[i],nazwy[j]);
-                macierz.getLiczby()[wymiar*i+j]=odczyt.nextDouble();
+                if(i==j){
+                    macierz.getLiczby()[wymiar * i + j] = 1;
+                }else {
+                    System.out.printf("ile razy ważniejsze jest %s ,od %s ", nazwy[i], nazwy[j]);
+                    macierz.getLiczby()[wymiar * i + j] = odczyt.nextDouble();
+                }
             }
             //macierz.json_tab[i]=new Json(tab);
         }
@@ -73,8 +77,13 @@ public class Drzewo_kategorii {
         for(int i=0;i<alternatywy.getstringsize();i++){
             //tab=new double[alternatywy.stringi.length];
             for(int j=0;j<alternatywy.getstringsize();j++){
-                System.out.printf("ile razy w %s lepsze jest %s ,od %s ",kategoria.nazwa,alternatywy.getStringi()[i],alternatywy.getStringi()[j]);
-                tab[i*alternatywy.getstringsize()+j]=odczyt.nextDouble();
+                if(i==j){
+                    tab[i*alternatywy.getstringsize()+j]=1;
+                }
+                else {
+                    System.out.printf("ile razy w %s lepsze jest %s ,od %s ", kategoria.nazwa, alternatywy.getStringi()[i], alternatywy.getStringi()[j]);
+                    tab[i * alternatywy.getstringsize() + j] = odczyt.nextDouble();
+                }
             }
             //macierz.json_tab[i]=new Json(tab);
         }

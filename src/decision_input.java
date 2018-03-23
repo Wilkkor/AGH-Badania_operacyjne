@@ -12,5 +12,8 @@ public class decision_input {
         }
         PrintStream zapis = new PrintStream(dane);
         drzewo.wypisz(zapis);
+        System.out.println();
+        Json wynik=Json.read("dane.json");
+        wynik.print(System.out,0);
     }
 }
