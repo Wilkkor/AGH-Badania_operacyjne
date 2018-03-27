@@ -7,7 +7,7 @@ import java.io.PrintStream;
 public class JsonTest {
     Json create(){Json główny=new Json();
         String[] tab ={"asd","sdf","dfg"};
-        Json alternatywy = new Json("alternatywy");
+        Json alternatywy = new Json("alternatives");
         alternatywy.setStringi(tab);
         Json goal=new Json("Goal");
         double[] macierz=new double[9];
@@ -19,7 +19,7 @@ public class JsonTest {
             }
         }
         Json macierzwag=new Json(new double[4]);
-        macierzwag.nazwij("macierz_wag");
+        macierzwag.nazwij("matrix");
         for(int i=0;i<2;i++){
             for (int j=0;j<2;j++) {
                 macierzwag.getLiczby()[j]=1;

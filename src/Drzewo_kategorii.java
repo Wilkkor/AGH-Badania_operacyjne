@@ -94,7 +94,7 @@ public class Drzewo_kategorii {
     public String[] tworzenie_alternatyw(int ilosc_alternatyw){
         String[] alternatywy = new String[ilosc_alternatyw];
         for (int i=0;i<ilosc_alternatyw;i++){
-            System.out.println("podaj alternatywe");
+            System.out.println("podaj alternatives");
             alternatywy[i]=odczyt.next();
         }
         return alternatywy;
