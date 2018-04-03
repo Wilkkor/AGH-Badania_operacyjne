@@ -5,13 +5,14 @@ import static org.junit.Assert.*;
 import java.io.PrintStream;
 
 public class JsonTest {
-    Json create(){Json główny=new Json();
+    Json create(){Json glowny=new Json();
         String[] tab ={"asd","sdf","dfg"};
         Json alternatywy = new Json("alternatives");
         alternatywy.setStringi(tab);
         Json goal=new Json("Goal");
         double[] macierz=new double[9];
         //macierz.nazwij("macierz");
+        //ten.typ=="double"
         for(int i=0;i<3;i++){
             for (int j=0;j<3;j++) {
                 //macierz.liczby[3*i+j]=1;
@@ -25,45 +26,45 @@ public class JsonTest {
                 macierzwag.getLiczby()[j]=1;
             }
         }
-        główny.addJson(alternatywy);
-        główny.addJson(goal);
-        główny.getJson_list().get(1).addJson(macierzwag);
-        główny.getJson_list().get(1).addJson(new Json()).nazwij("a");
-        główny.getJson_list().get(1).getJson_list().get(1).addJson(macierzwag);
-        główny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("q")).setLiczby(macierz);
-        główny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("w")).setLiczby(macierz);
-        główny.getJson_list().get(1).addJson(new Json()).nazwij("b").setLiczby(macierz);
-        return główny;
+        glowny.addJson(alternatywy);
+        glowny.addJson(goal);
+        glowny.getJson_list().get(1).addJson(macierzwag);
+        glowny.getJson_list().get(1).addJson(new Json()).nazwij("a");
+        glowny.getJson_list().get(1).getJson_list().get(1).addJson(macierzwag);
+        glowny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("q")).setLiczby(macierz);
+        glowny.getJson_list().get(1).getJson_list().get(1).addJson(new Json("w")).setLiczby(macierz);
+        glowny.getJson_list().get(1).addJson(new Json()).nazwij("b").setLiczby(macierz);
+        return glowny;
     }
     @Test
     public void wypisanie() throws Exception {
-        Json główny=create();
-        główny.print(System.out,0);
+        Json glowny=create();
+        glowny.print(System.out,0);
         File dane=new File("dane.json");
         if(!dane.exists()) {
             dane.createNewFile();
         }
         PrintStream zapis = new PrintStream(dane);
-        główny.print(zapis,0);
+//        glowny.print(zapis,0);
     }
     @Test
     public void equal() throws Exception {
-        Json główny=create();
-        assert główny.equal(główny);
+        Json glowny=create();
+        assert glowny.equal(glowny);
     }
     @Test
     public void wczytanie() throws Exception {
-        Json główny=create();
+        Json glowny=create();
         File dane=new File("dane.json");
         if(!dane.exists()) {
             dane.createNewFile();
         }
         PrintStream zapis = new PrintStream(dane);
-        główny.print(zapis,0);
+        glowny.print(zapis,0);
         Json wynik=Json.read("dane.json");
-//        główny.print(System.out,0);
+//        glowny.print(System.out,0);
 //        wynik.print(System.out,0);
-        assert wynik.equal(główny);
+        assert wynik.equal(glowny);
     }
 
 }

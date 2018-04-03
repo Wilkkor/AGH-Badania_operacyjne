@@ -62,6 +62,7 @@ public class Json{
         }
         return true;
     }
+
     public Json clone(){
         Json wynik=new Json();
         wynik.nazwa=nazwa;
@@ -98,6 +99,7 @@ public class Json{
         }
         return wynik;
     }
+
     public int getstringsize(){
         if(type.equals("string")){
             String tmp[]=(String[]) zawartosc;
@@ -105,6 +107,7 @@ public class Json{
         }
         else return 0;
     }
+
     public int getliczbysize(){
         if(type.equals("double")){
             double tmp[]=(double[]) zawartosc;
@@ -112,6 +115,7 @@ public class Json{
         }
         else return 0;
     }
+
     public int getjsonssize(){
         if(type.equals("jsontab")){
             Json tmp[]=(Json[]) zawartosc;
@@ -140,11 +144,11 @@ public class Json{
     }
 
     public String[] getStringi() {
-        return (String[]) zawartosc;
+        return type.equals("string")?(String[]) zawartosc:null;
     }
 
     public Json[] getJson_tab() {
-        return (Json[]) zawartosc;
+        return type.equals("jsontab")?(Json[]) zawartosc:null;
     }
 
     public List<Json> getJson_list() {
@@ -188,11 +192,13 @@ public class Json{
         this.nazwa = nazwa;
         return this;
     }
+
     private static void tabulatory(PrintStream out,int tabulatory){
         for(int j=0;j<tabulatory;j++){
             out.printf("\t");
         }
     }
+
     public void print(PrintStream out,int tabulatory){
 //        Scanner odczyt=new Scanner(System.in);
         //odczyt.next();
@@ -249,6 +255,7 @@ public class Json{
                 System.out.println("nieee nie tak");
         }
     }
+
     static Json read(String nazwa_wejscia) throws IOException {
         Scanner odczyt = new Scanner(new File(nazwa_wejscia));
         String w_stringu;
@@ -260,6 +267,7 @@ public class Json{
         return Json_creaton(w_stringu);
         //return null;
     }
+
     static String usun_biale_znaki(StringBuilder wynik){
         boolean w_cudzysłowiu=false;
         int i=0;
@@ -275,6 +283,7 @@ public class Json{
         }
         return wynik.toString();
     }
+
     static private Json Json_creaton(String w_stringu){
         Json wynik =new Json();
         int i=0,w_klamrze=0,w_tablicy=0;//tablica/lista
@@ -293,7 +302,7 @@ public class Json{
         }else if(w_stringu.charAt(i)=='['){//tablica stringów double-ów i jsonów
             i++;
             if(w_stringu.charAt(i)=='"'){
-                tworzenie_tablicy_stringów(w_stringu, wynik, i);
+                tworzenie_tablicy_stringow(w_stringu, wynik, i);
             }else if(w_stringu.charAt(i)<='9'&&w_stringu.charAt(i)>='0'){
                 tworzenie_tablicy_doubli(w_stringu, wynik, i);
             }else{
@@ -372,7 +381,7 @@ public class Json{
         wynik.setLiczby(tablica_doubli);
     }
 
-    private static void tworzenie_tablicy_stringów(String w_stringu, Json wynik, int i) {
+    private static void tworzenie_tablicy_stringow(String w_stringu, Json wynik, int i) {
         StringBuilder zawartosc=new StringBuilder();
         int w_tablicy=1;
         int w_klamrze=0;
