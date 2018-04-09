@@ -172,6 +172,7 @@ public class Drzewo_kategorii {
         }
         return w;
     }
+
     private double[] eigenvalue_count(Json element) {
         Matrix matrix=new Matrix(element.getLiczby(),(int)Math.sqrt(element.getLiczby().length));
         double[] eigenvalues=matrix.eig().getRealEigenvalues();
@@ -183,8 +184,13 @@ public class Drzewo_kategorii {
         }
         double[] w=new double[matrix.eig().getRealEigenvalues().length];
         Matrix a=matrix.eig().getV();
+        double s=0;
         for(int i=0;i<w.length;i++){
             w[i]=a.get(i,max);
+            s+=w[i];
+        }
+        for (int i=0;i<w.length;i++) {
+            w[i]/=s;
         }
         return w;
     }
