@@ -146,6 +146,10 @@ public class Drzewo_kategorii {
                         w[i] += w_podkategorii[j] * w_z_podkategorii[j][i];
                     }
                 }
+//                for (int i = 0; i < w.length; i++) {
+//                    System.out.printf(" %f ",w[i]);
+//                }
+//                System.out.println();
                 return w;
             default:
                 System.err.println("nieeee");
@@ -186,7 +190,7 @@ public class Drzewo_kategorii {
         Matrix a=matrix.eig().getV();
         double s=0;
         for(int i=0;i<w.length;i++){
-            w[i]=a.get(i,max);
+            w[i]=1/a.get(i,max);
             s+=w[i];
         }
         for (int i=0;i<w.length;i++) {
